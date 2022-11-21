@@ -1,0 +1,23 @@
+<!--change the attribute button 'action_set_lost" in the view crm.crm_lead_view_form-->
+<odoo>
+    <record id="crm_lead_extend_form" model="ir.ui.view">
+        <field name="name">crm.lead.form.inherit</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='%(crm.crm_lead_lost_action)d']" position="attributes">
+                <attribute name="invisible">[('priority', '=', 3)]</attribute>
+                <attribute name="groups">advanced_crm_sales.group_staff_manager</attribute>
+            </xpath>
+
+            <field name="user_id" position="attributes">
+                <attribute name="groups">advanced_crm_sales.group_staff_employee</attribute>
+            </field>
+
+            <field name="user_id" position="after">
+                <field name="sales_team"/>
+                <field name="minimum_revenue" widget="monetary"/>
+            </field>
+        </field>
+    </record>
+</odoo>

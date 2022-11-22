@@ -1,0 +1,54 @@
+<odoo>
+    <record id="plan_sale_order_list_view" model="ir.ui.view">
+      <field name="name">plan_sale_order.list.view</field>
+      <field name="model">plan.sale.order</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="quotation"/>
+          <field name="information"/>
+          <field name="approver"/>
+          <field name="status"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="plan_sale_order_form_view" model="ir.ui.view">
+      <field name="name">plan_sale_order.form.view</field>
+      <field name="model">plan.sale.order</field>
+      <field name="arch" type="xml">
+          <button name="action_accept" string="CONFIRM" type="object" class="oe_highlight"/>
+          <form>
+              <sheet>
+                  <group>
+                      <field name="name"/>
+                      <field name="quotation" widget="selection"/>
+                      <field name="information"/>
+                  </group>
+                  <notebook>
+                      <page string="List of approvers" name="approver_notes">
+                        <field name="res_partner_id" string=""/>
+                      </page>
+                      <page string="Status" name="status_notes">
+                          <field name="status"/>
+                      </page>
+                  </notebook>
+              </sheet>
+              <div class="oe_chatter">
+                  <field name="message_follower_ids" widget="mail_followers"/>
+                  <field name="message_ids" widget="mail_thread"/>
+              </div>
+          </form>
+      </field>
+    </record>
+
+    <record id="action_plan_sale_order" model="ir.actions.act_window">
+      <field name="name">Plan Sale Order</field>
+      <field name="res_model">plan.sale.order</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="plan_sale_order_sub_menu" parent="sale.sale_menu_root" name="Plan"/>
+
+    <menuitem id="plan_sale_order_menu" action="action_plan_sale_order" parent="plan_sale_order_sub_menu" name="Plan Sale Order"/>
+</odoo>

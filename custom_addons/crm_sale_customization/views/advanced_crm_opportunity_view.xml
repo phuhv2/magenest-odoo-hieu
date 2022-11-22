@@ -1,0 +1,17 @@
+<odoo>
+    <data>
+        <record id="crm_lead_extend_form" model="ir.ui.view">
+          <field name="name">crm_lead form</field>
+          <field name="model">crm.lead</field>
+          <field name="inherit_id" ref="sale.crm_lead_view_form"/>
+          <field name="arch" type="xml">
+                <field name="payment_term_id" position="after">
+                    <field name="plan_sale_order"/>
+                </field>
+              <button name="action_confirm" position="after">
+                  <button name="new_plan" string="NEW PLAN" type="object" class="oe_highlight"/>
+              </button>
+            </field>
+        </record>
+    </data>
+</odoo>

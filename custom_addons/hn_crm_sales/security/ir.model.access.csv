@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hn_crm_sales_hn_crm_sales,hn_crm_sales.hn_crm_sales,model_hn_crm_sales_hn_crm_sales,base.group_user,1,1,1,1

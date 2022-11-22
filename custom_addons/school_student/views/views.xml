@@ -1,0 +1,76 @@
+<odoo>
+  <data>
+    <!-- list view of school_student -->
+    <record id="school_student_list_view" model="ir.ui.view">
+      <field name="name">school_student.list.view</field>
+      <field name="model">school.student</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="school_id"/>
+          <field name="hobby_list"/>
+          <field name="is_virtual_school"/>
+          <field name="school_address"/>
+        </tree>
+      </field>
+    </record>
+
+<!--    form view of school_student-->
+    <record id="school_student_form_view" model="ir.ui.view">
+      <field name="name">school_student.form.view</field>
+      <field name="model">school.student</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group>
+              <field name="name"/>
+              <field name="school_id" widget="selection" domain="[('is_virtual_class', '=', True),('school_type', '!=', False)]"
+              options="{'no_create': True, 'no_open': True}"/>
+              <field name="hobby_list" widget="many2many_checkboxes"/>
+              <field name="is_virtual_school"/>
+              <field name="school_address"/>
+              <field name="currency_id"/>
+              <field name="student_fees"/>
+              <field name="total_fees" widget="monetary"/>
+              <field name="ref_id"/>
+              <field name="active"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+
+<!--    extend list views model student of module school-->
+    <record id="school_extend_form" model="ir.ui.view">
+      <field name="name">school_extend form</field>
+      <field name="model">school.profile</field>
+      <field name="inherit_id" ref="school.school_form_view"/>
+      <field name="arch" type="xml">
+        <field name="school_description" position="after">
+          <field name="school_list"/>
+        </field>
+      </field>
+    </record>
+
+    <!-- actions of school_student -->
+    <record id="action_school_student" model="ir.actions.act_window">
+      <field name="name">School Student</field>
+      <field name="res_model">school.student</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+
+<!--    menu-->
+    <menuitem id="school_student_root_menu" name="School Student"/>
+
+    <menuitem id="school_student_sub_menu" parent="school_student_root_menu" name="Student"/>
+
+    <menuitem id="school_student_menu" action="action_school_student" parent="school_student_sub_menu" name="Student"/>
+
+
+
+
+  </data>
+</odoo>

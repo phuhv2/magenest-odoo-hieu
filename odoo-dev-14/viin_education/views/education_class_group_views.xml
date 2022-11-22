@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+<!--    Thêm tree(list) view-->
+    <record id="education_class_group_tree" model="ir.ui.view">
+        <field name="name">education.class.group.tree</field>
+        <field name="model">education.class.group</field>
+        <field name="arch" type="xml">
+            <tree string="Class Group Tree">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+<!--    Thêm form view -->
+    <record id="education_class_group_form" model="ir.ui.view">
+        <field name="name">education.class.group.form</field>
+        <field name="model">education.class.group</field>
+        <field name="arch" type="xml">
+            <form string="Class Group Form">
+                <group>
+                    <group>
+                        <field name="name"/>
+                        <field name="parent_path"/>
+                        <field name="parent_id"/>
+                        <field name="child_ids"/>
+                    </group>
+                </group>
+            </form>
+        </field>
+    </record>
+<!--Thêm dữ liệu bản ghi action để mở view-->
+    <record id="education_class_group_action" model="ir.actions.act_window">
+        <field name="name">Class Group</field>
+        <field name="res_model">education.class.group</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+<!--    thêm menu để truy cập model thông qua action vừa tạo-->
+    <menuitem id="education_class_group_menu" action="education_class_group_action" parent="education_student_menu_root"
+              name="Class Group" sequence="40"/>
+
+</odoo>

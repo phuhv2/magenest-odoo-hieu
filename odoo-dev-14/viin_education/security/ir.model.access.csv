@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_education_school_user,education.school user,model_education_school,viin_education_group_user,1,0,0,0
+access_education_school_admin,education.school admin,model_education_school,viin_education_group_admin,1,1,1,1
+access_education_class_admin,education.class admin,model_education_class,viin_education_group_admin,1,1,1,1

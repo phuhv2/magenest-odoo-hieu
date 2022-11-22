@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-<!--    inherit form view-->
+<!--inherit form view of sale-->
     <record id="sale_order_inherit_form_view" model="ir.ui.view">
         <field name="name">sale.order.inherit.form.view</field>
         <field name="model">sale.order</field>

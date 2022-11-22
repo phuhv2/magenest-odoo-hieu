@@ -1,10 +1,10 @@
 <odoo>
-<!--    them chi tieu doanh so theo thang vao notebook-->
     <record id="crm_team_extend_form" model="ir.ui.view">
           <field name="name">crm_team_extend form</field>
           <field name="model">crm.team</field>
           <field name="inherit_id" ref="sales_team.crm_team_view_form"/>
           <field name="arch" type="xml">
+<!--Add target configuration item-->
                <xpath expr="//form//sheet//notebook//page[@name='members_users']" position="before">
                     <page string="Monthly Sales (VAT)" name="monthly_sales_notes">
                         <group>
@@ -26,8 +26,8 @@
           </field>
       </record>
 
-<!--    truong phong ban hang moi xem menu cau hinh-->
     <record id="crm.crm_menu_config" model="ir.ui.menu">
         <field name="name">Configuration</field>
+<!--        <field name="groups" eval="[(4, ref('advanced_crm_sales.group_staff_leader'))]" />-->
     </record>
 </odoo>

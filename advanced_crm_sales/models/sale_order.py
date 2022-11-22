@@ -9,8 +9,8 @@ class SaleOrder(models.Model):
     new_state = fields.Selection(related='plan_sale_order_id.state')
     real_revenue = fields.Float(string='Real Revenue', compute='_compute_actual_revenue', digits=(12, 3))
 
-    # button business plan approval
+# check quotes and plans
     def action_confirm(self):
         if not self.new_quotation or self.new_state != 'approve':
-            raise models.ValidationError('Unapproved business plan')
+            raise models.ValidationError('The business plan has not been added or approved yet')
         return super(SaleOrder, self).action_confirm()

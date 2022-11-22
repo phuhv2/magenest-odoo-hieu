@@ -6,13 +6,13 @@
         <field name="model">plan.sale.order</field>
         <field name="arch" type="xml">
             <form name="Plan Sale Order Form">
-<!--                header-->
+                <!--header-->
                 <header>
                     <button name="btn_new" type="object" string="New" class="oe_highlight"
                             attrs="{'invisible': [('state', 'not in', ('draft'))]}"
                             groups="advanced_crm_sales.group_staff_employee"/>
                     <button name="btn_send" type="object" string="Send" class="oe_highlight"
-                            attrs="{'invisible': [('state', 'in', ('draft', 'approve','refuse'))]}"
+                            attrs="{'invisible': [('state', 'in', ('draft', 'send', 'approve','refuse'))]}"
                             groups="advanced_crm_sales.group_staff_employee"/>
                     <button name="btn_approve_confirm" type="object" string="Approve" class="oe_highlight"
                             groups="advanced_crm_sales.group_staff_approver"/>
@@ -21,7 +21,7 @@
 
                     <field name="state" widget="statusbar"/>
                 </header>
-<!--                sheet-->
+                <!--sheet-->
                 <sheet>
                     <div class="oe_title">
                         <label for="name" class="oe_edit_only"/>
@@ -41,14 +41,17 @@
                                     <field name="approver"/>
                                     <field name="approval_status"/>
                                     <button name="btn_approve" string="Approve" type="object" class="oe_highlight"
-                                            groups="advanced_crm_sales.group_staff_approver"/>
+                                            groups="advanced_crm_sales.group_staff_approver"
+                                            attrs="{'invisible': [('approval_status', 'in', ('approve'))]}"/>
                                     <button name="btn_refuse" string="Refuse" type="object" class="oe_highlight"
-                                            groups="advanced_crm_sales.group_staff_approver"/>
+                                            groups="advanced_crm_sales.group_staff_approver"
+                                            attrs="{'invisible': [('approval_status', 'in', ('refuse'))]}"/>
                                 </tree>
                             </field>
                         </page>
                     </notebook>
                 </sheet>
+                <!--message post-->
                 <div class="oe_chatter">
                     <field name="message_follower_ids" widget="mail_followers"/>
                     <field name="message_ids" widget="mail_thread"/>

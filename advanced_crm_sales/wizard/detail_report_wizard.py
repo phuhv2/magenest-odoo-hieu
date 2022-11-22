@@ -14,6 +14,7 @@ class DetailReportWizard(models.TransientModel):
     ], string='Month', default='0')
     sales_team_id = fields.Many2one('crm.team', string='Sales Team')
 
+# Display detailed report results by month and sales group
     def btn_confirm(self):
         if self.month and self.sales_team_id:
             return {

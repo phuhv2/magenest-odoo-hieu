@@ -1,5 +1,5 @@
 <odoo>
-    <record id="crm_team_extend_form" model="ir.ui.view">
+    <record id="s_crm_team_extend_form" model="ir.ui.view">
           <field name="name">crm_team_extend form</field>
           <field name="model">crm.team</field>
           <field name="inherit_id" ref="sales_team.crm_team_view_form"/>

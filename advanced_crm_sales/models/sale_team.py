@@ -1,21 +1,8 @@
-from odoo import models, fields
+from odoo import models, fields, api
+from odoo.exceptions import ValidationError
 
 class MonthlySales(models.Model):
     _inherit = "crm.team"
-    _sql_constraints = [
-        ("check_january_sales", "CHECK(january_sales > 0)", "The expected price must be strictly positive"),
-        ("check_february_sales", "CHECK(february_sales > 0)", "The expected price must be strictly positive"),
-        ("check_march_sales", "CHECK(march_sales > 0)", "The expected price must be strictly positive"),
-        ("check_april_sales", "CHECK(april_sales > 0)", "The expected price must be strictly positive"),
-        ("check_may_sales", "CHECK(may_sales > 0)", "The expected price must be strictly positive"),
-        ("check_june_sales", "CHECK(june_sales > 0)", "The expected price must be strictly positive"),
-        ("check_july_sales", "CHECK(july_sales > 0)", "The expected price must be strictly positive"),
-        ("check_august_sales", "CHECK(august_sales > 0)", "The expected price must be strictly positive"),
-        ("check_september_sales", "CHECK(september_sales > 0)", "The expected price must be strictly positive"),
-        ("check_october_sales", "CHECK(october_sales > 0)", "The expected price must be strictly positive"),
-        ("check_november_sales", "CHECK(november_sales > 0)", "The expected price must be strictly positive"),
-        ("check_december_sales", "CHECK(december_sales > 0)", "The expected price must be strictly positive"),
-    ]
 
     january_sales = fields.Float("January Sales", digits=(12, 3))
     february_sales = fields.Float("February Sales", digits=(12, 3))
@@ -29,4 +16,15 @@ class MonthlySales(models.Model):
     october_sales = fields.Float("October Sales", digits=(12, 3))
     november_sales = fields.Float("November Sales", digits=(12, 3))
     december_sales = fields.Float("December Sales", digits=(12, 3))
+
+    @api.constrains('january_sales', 'february_sales', 'march_sales', 'april_sales', 'may_sales', 'june_sales'
+                    'july_sales', 'august_sales', 'september_sales', 'october_sales', 'november_sales', 'december_sales')
+    def _check_month(self):
+        for rec in self:
+            if (rec.january_sales<0 and rec.february_sales<0 and rec.march_sales<0 and rec.april_sales<0
+                    and rec.may_sales<0 and rec.june_sales<0 and rec.july_sales<0 and rec.august_sales<0
+                    and rec.september_sales<0 and rec.october_sales<0 and rec.november_sales<0 and rec.december_sales<0):
+
+                raise ValidationError("The expected price must be strictly positive")
+
 

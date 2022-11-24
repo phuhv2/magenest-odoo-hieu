@@ -17,7 +17,7 @@ class MonthlySales(models.Model):
     november_sales = fields.Float("November Sales", digits=(12, 3))
     december_sales = fields.Float("December Sales", digits=(12, 3))
 
-    @api.constrains('january_sales', 'february_sales', 'march_sales', 'april_sales', 'may_sales', 'june_sales'
+    @api.constrains('january_sales', 'february_sales', 'march_sales', 'april_sales', 'may_sales', 'june_sales',
                     'july_sales', 'august_sales', 'september_sales', 'october_sales', 'november_sales', 'december_sales')
     def _check_month(self):
         for rec in self:

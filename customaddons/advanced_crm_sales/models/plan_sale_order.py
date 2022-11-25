@@ -54,7 +54,7 @@ class PlanSaleOrder(models.Model):
             else:
                 raise UserError('Please write your approvers.')
         else:
-            raise UserError('Cannot confirm this approve. Please check your data.')
+            raise UserError('All approvers have not yet agreed to approve.')
 
     # refuse confirm
     def btn_refuse_confirm(self):
@@ -64,4 +64,4 @@ class PlanSaleOrder(models.Model):
             self.state = 'refuse'
             self.message_post(subject='Refuse New Plan', body=noti_send)
         else:
-            raise UserError('Cannot confirm this refuse. Please check your data.')
+            raise UserError('All approvers who have not yet declined approval.')

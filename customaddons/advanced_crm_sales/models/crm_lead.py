@@ -11,6 +11,7 @@ class CrmLead(models.Model):
     sales_team = fields.Many2one('crm.team', string='Sales Team')
     create_month = fields.Char('Create Month', compute='_compute_create_month', readonly=True)
     real_revenue = fields.Float(string="Real Revenue", compute='_compute_real_revenue')
+
     @api.depends('create_date')
     def _compute_create_month(self):
         for rec in self:

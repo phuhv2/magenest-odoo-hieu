@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-    <record id="crm_lead_wizard_extend_tree" model="ir.ui.view">
+    <record id="s_crm_lead_wizard_extend_tree" model="ir.ui.view">
         <field name="name">crm.lead.wizard.tree.inherit</field>
         <field name="model">crm.lead</field>
         <field name="inherit_id" ref="crm.crm_case_tree_view_oppor"/>

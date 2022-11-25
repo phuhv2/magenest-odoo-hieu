@@ -10,17 +10,17 @@ class AprroverList(models.Model):
         ('approve', 'Approve'),
         ('refuse', 'Refuse'),
     ], string='Approval Status', default='draft', readonly=True)
-    order_id = fields.Many2one('plan.sale.order', string='Order Reference')
+    order_id = fields.Many2one('plan.sale.order', string='Order Reference', readonly=True)
     state_related = fields.Selection(related='order_id.state', string='State related')
 
-    # approve button
+# all approvers confirm approval or disapproval
     def btn_approve(self):
         self.approval_status = 'approve'
         states = self.order_id.order_line.mapped('approval_status')
         if all([state == 'approve' for state in states]):
             self.order_id.check_confirm = 'yes'
 
-    # refuse button
+
     def btn_refuse(self):
         self.approval_status = 'refuse'
         states = self.order_id.order_line.mapped('approval_status')
